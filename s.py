@@ -1,5 +1,5 @@
 import fileinput, collections, collections as cl, itertools, itertools as it, math, random, sys, re, string, functools
-from grid import gridsource as grid, gridcustom # *, gridsource, gridcardinal, gridplane
+from gridlib import gridsource as gridlib, gridcustom # *, gridsource, gridcardinal, gridplane
 from util import *
 
 
