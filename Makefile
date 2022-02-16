@@ -21,4 +21,4 @@ copy-last:
 	python3 s.py | tee >(tail -n1 | pbcopy)
 
 example:
-	@python3 s.py example
+	@python3 s.py ex
