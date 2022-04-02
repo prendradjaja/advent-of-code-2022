@@ -261,6 +261,11 @@ def rangelen(lst):
 def flatten(t):
     return [item for sublist in t for item in sublist]
 
+def listify(fn):
+    def wrapped(*args, **kwargs):
+        return list(fn(*args, **kwargs))
+    return wrapped
+
 
 # enumerate
 # ascii_lowercase ascii_lowercase
