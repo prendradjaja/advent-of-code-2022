@@ -2,6 +2,7 @@ import re
 import inspect
 import types
 import itertools
+import functools
 from collections import Counter
 
 def tee_disableable(*args, **kwargs):
@@ -262,6 +263,7 @@ def flatten(t):
     return [item for sublist in t for item in sublist]
 
 def listify(fn):
+    @functools.wraps(fn)
     def wrapped(*args, **kwargs):
         return list(fn(*args, **kwargs))
     return wrapped
