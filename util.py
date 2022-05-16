@@ -268,6 +268,12 @@ def listify(fn):
         return list(fn(*args, **kwargs))
     return wrapped
 
+def enumerate2d(grid):
+    for r, row in enumerate(grid):
+        for c, value in enumerate(row):
+            yield (r, c), value
+
+
 
 # enumerate
 # ascii_lowercase ascii_lowercase
