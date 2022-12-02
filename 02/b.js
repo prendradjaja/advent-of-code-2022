@@ -4,9 +4,6 @@ const interpret = {
   'A': 'R',
   'B': 'P',
   'C': 'S',
-  'X': 'R',
-  'Y': 'P',
-  'Z': 'S',
 };
 
 function main() {
