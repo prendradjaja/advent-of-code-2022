@@ -1,0 +1,10 @@
+That was fun! A bit "Ugh I'd be done already if I'd been doing this in
+Python," but also quite fun in the mind-bendy way, and satisfying to be done
+with!
+
+Nice to practice writing a function like `applyN`. Nice to learn that
+`transpose` is in the standard library, though it'll be good practice to try
+implementing that one myself.
+
+Next time I should definitely look up how to read a file instead of putting
+everything in `interact`.
