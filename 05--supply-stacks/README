@@ -1,6 +1,6 @@
 That was fun! A bit "Ugh I'd be done already if I'd been doing this in
 Python," but also quite fun in the mind-bendy way, and satisfying to be done
-with!
+with! I quite enjoyed both the parsing and stack-rearranging parts.
 
 Nice to practice writing a function like `applyN`. Nice to learn that
 `transpose` is in the standard library, though it'll be good practice to try
