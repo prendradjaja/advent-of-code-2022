@@ -1,0 +1,14 @@
+Phew! Some thoughts:
+
+- These are getting time consuming for me to do in Haskell! We'll see how long
+  I can keep up doing this every other day :)
+- I'm very glad that Part 2 was exactly what I expected it to be, so my
+  approach (writing a function to create a tail path from an existing head
+  path) worked well. In Haskell, I didn't have much choice, but in Python I
+  wonder if I would've done this all as loop state variables instead of
+  functional style (therefore needing a lot of work for part 2).
+- I had to stumble around a bit getting my solution to be performant enough.
+  Ironically, my first attempt (getTailPath1 in Extras.hs) was too slow
+  because I was trying to write more performant code (but failed) by using `:`
+  instead of `++`. When I wrote simpler code using `++`, it was sufficient,
+  even if not fast.
