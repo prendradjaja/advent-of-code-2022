@@ -1,3 +1,6 @@
+-- Usage:
+--   runhaskell a.hs in
+
 import qualified Data.Set as Set
 import Data.Function ((&))
 import System.Environment (getArgs)
@@ -13,16 +16,11 @@ main = do
   let [path] = args
   text <- readFile path
 
+  putStrLn "Please wait... (On my machine, it takes about 5 seconds on the full input)"
   let headPath = getHeadPath $ parse text
-  putStrLn "Computing head path"
-  print (length headPath, head headPath, last headPath)
-
   let tailPath = getTailPath headPath
-  putStrLn "Computing tail path"
-  print (length tailPath, head tailPath, last tailPath)
-
   let answer = Set.size $ Set.fromList tailPath
-  putStrLn "\nAnswer:"
+
   print answer
 
 parse text =
@@ -42,24 +40,6 @@ getHeadPath motions =
           path ++ newPositions
       )
       [(0, 0)]
-
--- getTailPath headPath =
---   (0, 0)
---   : map
---       (\(prevTailPosition, currHeadPosition) -> approach prevTailPosition currHeadPosition)
---       (zip (getTailPath headPath) (tail headPath))
-
--- getTailPath headPath =
---   foldl
---     (\tailPath headPosition ->
---       let
---         lastTailPosition = last tailPath
---         newTailPosition = approach lastTailPosition headPosition
---       in
---         tailPath ++ [newTailPosition]
---     )
---     [(0, 0)]
---     (tail headPath)
 
 getTailPath headPath =
   foldl
