@@ -5,37 +5,66 @@ import itertools
 import sys
 
 from sscanf import sscanf
+from get_permutation import get_permutation, get_unused
 
 
 Valve = namedtuple('Valve', 'id flow_rate neighbors')
 
 
 def main(path):
-    global all_valves
+    global all_valves, max_score, openable_valve_ids
     all_valves = {}
     for line in open(path).read().splitlines():
         valve = parse_line(line)
         all_valves[valve.id] = valve
 
-    openable_valves = [v.id for v in all_valves.values() if v.flow_rate > 0]
-    assert 'AA' not in openable_valves
+    openable_valve_ids = [v.id for v in all_valves.values() if v.flow_rate > 0]
+    assert 'AA' not in openable_valve_ids
 
-    example_plan = tuple(openable_valves)
-    print('Example plan duration:', get_plan_duration(example_plan))
-
-    solve_example(openable_valves)
-
-    # CONTINUE HERE: Try implementing a backtracking solution
+    max_score = 0
+    empty_state = ()
+    backtracking_search(empty_state)
+    print(max_score)
 
 
-def solve_example(openable_valves):
+# state = indices
+def backtracking_search(state):
+    global max_score
+    score = get_plan_score(get_permutation(openable_valve_ids, state))
+    max_score = max(max_score, score)
+    # print(max_score, '\t', state)
+    if should_prune(state):
+        return
+    for child in child_nodes(state):
+        # update(state, child)
+        # solved = backtracking_search(state)
+        backtracking_search(child)
+        # undo_update(state, child)
+def should_prune(state):
+    # unused = get_unused(openable_valve_ids, state)
+    return False
+def child_nodes(state):
+    plan = get_permutation(openable_valve_ids, state)
+    unused = get_unused(openable_valve_ids, state)
+    for i, each in enumerate(unused):
+        child_state = state + (i,)
+        child_plan = plan + (each,)
+        if is_valid_plan(child_plan):
+            yield child_state
+def update(state, child):
+    pass
+def undo_update(state, child):
+    pass
+
+
+def solve_example():
     '''
-    This solution works for the example input because 6! (len(openable_valves) == 6) is small, but
+    This solution works for the example input because 6! (len(openable_valve_ids) == 6) is small, but
     won't work for the puzzle input.
     '''
-    if len(openable_valves) > 10:
+    if len(openable_valve_ids) > 10:
         return
-    plans = list(itertools.permutations(openable_valves))
+    plans = list(itertools.permutations(openable_valve_ids))
     assert all(is_valid_plan(plan) for plan in plans)
     print('Answer:', max(get_plan_score(plan) for plan in plans))
 
