@@ -23,7 +23,7 @@ def main(path):
     example_plan = tuple(openable_valves)
     print('Example plan duration:', get_plan_duration(example_plan))
 
-    # solve_example(openable_valves)
+    solve_example(openable_valves)
 
     # CONTINUE HERE: Try implementing a backtracking solution
 
@@ -33,9 +33,11 @@ def solve_example(openable_valves):
     This solution works for the example input because 6! (len(openable_valves) == 6) is small, but
     won't work for the puzzle input.
     '''
-    get_all_plans = lambda: itertools.permutations(openable_valves)
-    assert all(is_valid_plan(plan) for plan in get_all_plans())
-    print('Answer:', max(get_plan_score(plan) for plan in get_all_plans()))
+    if len(openable_valves) > 10:
+        return
+    plans = list(itertools.permutations(openable_valves))
+    assert all(is_valid_plan(plan) for plan in plans)
+    print('Answer:', max(get_plan_score(plan) for plan in plans))
 
 
 def parse_line(line):
