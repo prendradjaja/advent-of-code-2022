@@ -1,3 +1,6 @@
+import re
+
+
 def sscanf(s, fmt):
     '''
     Parses the string against the given template, returning the values of the
