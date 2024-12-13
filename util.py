@@ -45,6 +45,9 @@ def _getstack():
         frame = frame.f_back
     return stack
 
+# TODO I guess there's at least one bug here.
+# See https://github.com/prendradjaja/advent-of-code-2024/blob/main/13py/findints.py
+# Probably use that one instead
 def ints(strings, mixedstring='error'):
     """
     Parses a sequence of strings, some of which are ints. Usually, each should be either exactly
